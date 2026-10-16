@@ -1,0 +1,29 @@
+
+# environemnt variables
+.env
+.env.*
+!.env.example
+
+# data (about 2 GB, rebuilt by the updater) and caches
+data/
+*.duckdb
+*.duckdb.next
+*.duckdb.wal
+*.parquet
+!tests/fixtures/*.parquet
+
+# python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# editor / os
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+

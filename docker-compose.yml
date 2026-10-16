@@ -1,0 +1,49 @@
+# docker compose up -d --build            the site on http://localhost:8000
+# docker compose --profile https up -d    + automatic HTTPS for your domain (set DOMAIN in .env)
+services:
+  app:
+    build: .
+    restart: unless-stopped                 # also how the app reloads after the daily update (see RESTART_ON_NEW_DB)
+    ports:
+      - "8000:8000"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      RESTART_ON_NEW_DB: "1"
+    volumes:
+      - ./data:/app/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://localhost:8000/api/health', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+  updater:                                  # every day 04:30 Berlin time: add the newest days to the database
+    build: .
+    restart: unless-stopped
+    command: ["python", "scripts/daily_loop.py"]
+    env_file:
+      - path: .env
+        required: false
+    volumes:
+      - ./data:/app/data
+
+  caddy:                                    # optional: HTTPS in front of the app (needs a domain pointing here)
+    image: caddy:2
+    profiles: ["https"]
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      DOMAIN: ${DOMAIN:-localhost}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+    depends_on:
+      - app
+
+volumes:
+  caddy_data:

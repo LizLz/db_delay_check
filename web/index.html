@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Delay Assistant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">Delay Assistant</div>
+  <div class="tagline">How late did this train actually arrive? Based on history, not a forecast.</div>
+</header>
+
+<div class="layout">
+  <!-- LEFT: search -->
+  <aside class="card search">
+    <h2>Find a connection</h2>
+    <form id="form" autocomplete="off" novalidate>
+      <div class="field combo">
+        <label for="from">From</label>
+        <input id="from" type="text" role="combobox" aria-expanded="false" aria-controls="from-list" aria-autocomplete="list" placeholder="e.g. Berlin Hbf">
+        <ul id="from-list" role="listbox" hidden></ul>
+      </div>
+      <div class="field combo">
+        <label for="to">To</label>
+        <input id="to" type="text" role="combobox" aria-expanded="false" aria-controls="to-list" aria-autocomplete="list" placeholder="e.g. Stuttgart Hbf">
+        <ul id="to-list" role="listbox" hidden></ul>
+      </div>
+      <div class="row">
+        <div class="field"><label for="date">Date</label><input id="date" type="date"></div>
+        <div class="field"><label for="time">Departure time</label><input id="time" type="time"></div>
+      </div>
+      <div class="field">
+        <span class="label">Tracking period</span>
+        <div class="seg" role="group" aria-label="Tracking period" id="window">
+          <button type="button" data-w="7" aria-pressed="true">7 days</button>
+          <button type="button" data-w="15" aria-pressed="false">15 days</button>
+          <button type="button" data-w="30" aria-pressed="false">30 days</button>
+        </div>
+      </div>
+      <div class="switchrow">
+        <button type="button" id="dt" class="switch" role="switch" aria-checked="false" aria-label="Deutschlandticket only"><span></span></button>
+        <div>
+          <div class="switch-title">Deutschlandticket only</div>
+          <div class="hint">Only trips the ticket covers (regional trains, S-Bahn, some IC/EC).</div>
+        </div>
+      </div>
+      <button type="submit" id="go" class="primary">Search</button>
+      <p id="msg" class="msg" role="alert" hidden></p>
+    </form>
+    <a href="#" id="back" class="back" hidden>Back to the general overview</a>
+  </aside>
+
+  <!-- RIGHT -->
+  <main class="main">
+    <div id="home">
+      <section class="card">
+        <h2 class="big">General delay overview</h2>
+        <p class="sub" id="ov-sub">Median arrival delay by planned arrival hour, last 30 days, all stations. Cancelled trains excluded.</p>
+        <div class="legend" id="ov-legend"></div>
+        <div class="chartwrap" id="ov-chart"><div class="skeleton" role="status" aria-label="Loading"></div></div>
+      </section>
+
+      <section class="card">
+        <h2 class="big">Delay persistence</h2>
+        <p class="sub" id="pe-sub"></p>
+        <div class="persist" id="pe-body"><div class="skeleton" role="status" aria-label="Loading"></div></div>
+      </section>
+
+      <section class="card">
+        <div class="reporthead">
+          <div>
+            <h2 class="big">Report</h2>
+            <p class="sub">A short summary of the two charts. Updated once a day.</p>
+          </div>
+          <button type="button" class="primary small" id="rp-btn">Generate report</button>
+        </div>
+        <div class="placeholder" id="rp-body">Click "Generate report" for a short summary of the two charts.</div>
+      </section>
+    </div>
+
+    <div id="results" hidden></div>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

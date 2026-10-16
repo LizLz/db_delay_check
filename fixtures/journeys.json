@@ -1,0 +1,55 @@
+{
+  "verbindungen": [
+    {
+      "umstiegsAnzahl": 1,
+      "verbindungsDauerInSeconds": 7260,
+      "angebotsPreis": {"betrag": 59.9, "waehrung": "EUR"},
+      "verbindungsAbschnitte": [
+        {
+          "verkehrsmittel": {"typ": "PUBLICTRANSPORT", "mittelText": "ICE 594", "name": "ICE 594", "nummer": "594", "produktGattung": "ICE"},
+          "abfahrtsOrtExtId": "8000096", "abfahrtsOrt": "Stuttgart Hbf",
+          "ankunftsOrtExtId": "8000284", "ankunftsOrt": "Nürnberg Hbf",
+          "abfahrt": {"sollzeit": "2000-01-01T16:49:00", "echtzeit": "2000-01-01T16:52:00"},
+          "ankunft": {"sollzeit": "2000-01-01T17:55:00", "echtzeit": "2000-01-01T18:02:00"}
+        },
+        {
+          "verkehrsmittel": {"typ": "PUBLICTRANSPORT", "mittelText": "ICE 104", "name": "ICE 104", "nummer": "104", "produktGattung": "ICE"},
+          "abfahrtsOrtExtId": "8000284", "abfahrtsOrt": "Nürnberg Hbf",
+          "ankunftsOrtExtId": "8070003", "ankunftsOrt": "Frankfurt(M) Flughafen Fernbf",
+          "abfahrt": {"sollzeit": "2000-01-01T18:05:00", "echtzeit": null},
+          "ankunft": {"sollzeit": "2000-01-01T18:50:00", "echtzeit": null}
+        }
+      ]
+    },
+    {
+      "umstiegsAnzahl": 0,
+      "verbindungsDauerInSeconds": 3900,
+      "angebotsPreis": {"betrag": 49.9, "waehrung": "EUR"},
+      "verbindungsAbschnitte": [
+        {
+          "verkehrsmittel": {"typ": "PUBLICTRANSPORT", "mittelText": "ICE 29", "name": "ICE 29", "nummer": "29", "produktGattung": "ICE"},
+          "abfahrtsOrtExtId": "8000096", "abfahrtsOrt": "Stuttgart Hbf",
+          "ankunftsOrtExtId": "8000105", "ankunftsOrt": "Frankfurt (Main) Hbf",
+          "abfahrt": {"sollzeit": "2000-01-01T13:25:00", "echtzeit": null},
+          "ankunft": {"sollzeit": "2000-01-01T14:30:00", "echtzeit": null}
+        }
+      ]
+    },
+    {
+      "umstiegsAnzahl": 0,
+      "verbindungsDauerInSeconds": 3180,
+      "angebotsPreis": {"betrag": 24.9, "waehrung": "EUR"},
+      "meldungenAsObject": [{"code": "MDA-NUR-DT"}],
+      "verbindungsAbschnitte": [
+        {
+          "verkehrsmittel": {"typ": "PUBLICTRANSPORT", "mittelText": "RE 4", "name": "RE 4", "nummer": "4", "produktGattung": "REGIONAL"},
+          "abfahrtsOrtExtId": "8000096", "abfahrtsOrt": "Stuttgart Hbf",
+          "ankunftsOrtExtId": "8000244", "ankunftsOrt": "Mannheim Hbf",
+          "abfahrt": {"sollzeit": "2000-01-01T17:12:00", "echtzeit": null},
+          "ankunft": {"sollzeit": "2000-01-01T18:05:00", "echtzeit": null}
+        }
+      ]
+    }
+  ],
+  "verbindungReference": {"earlier": null, "later": null}
+}
