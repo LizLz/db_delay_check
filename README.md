@@ -80,6 +80,28 @@ The delay database is not in the repository (it is about 2 GB). The updater buil
 | `DOMAIN` | only for the HTTPS profile on a server |
 | `UPDATE_HOUR`, `UPDATE_MINUTE` | time of the daily update (default 04:30, Berlin) |
 
+## Reporting (Power BI)
+
+Besides the web app, the same delay history feeds an offline **Power BI** dashboard.
+`scripts/export_bi.py` writes small aggregated Parquet tables from DuckDB, and Power BI loads them into a star schema
+(fact tables for stations, hours and causes; dimensions for stations, dates and causes) with DAX measures
+(delayed share, cancellation share, period-over-period change, station ranking).
+
+![Overview](docs/powerbi/overview.png)
+![Delay Timing](docs/powerbi/delay_analysis.png)
+
+- **Overview:** KPI cards, weekly or monthly trend, a region -> station drill-down matrix, worst stations, top delay causes.
+- **Delay Timing:** weekday x hour heatmap, delay by train family, delay by hour of day.
+
+How to rebuild:
+
+```bash
+uv run python scripts/export_bi.py          # writes data/bi/*.parquet
+```
+
+Then open `docs/powerbi/db-operational-health.pbix` in Power BI Desktop and refresh. Model and measures are described in
+[`docs/POWERBI.md`](docs/POWERBI.md).
+
 ## Limits
 
 - History only, no forecast. The number of days is the tracking window you choose.

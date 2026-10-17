@@ -11,6 +11,8 @@ dependencies = [
     "uvicorn[standard]",
     "tzdata",
     "curl-cffi>=0.16.3",
+    "pandas>=3.0.6",
+    "pyarrow>=26.0.0",
 ]
 
 [project.optional-dependencies]

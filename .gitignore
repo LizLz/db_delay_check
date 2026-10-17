@@ -26,4 +26,8 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
+# power bi exports (keep the .pbix out of git unless it is small)
+*.pbix
+!docs/powerbi/*.pbix
+data/bi/
 
